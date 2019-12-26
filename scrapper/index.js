@@ -1,19 +1,21 @@
-
 "use strict"
 
-const scrapeIt = require("scrape-it")
+const scrapeIt = require("scrape-it");
+
+console.log('Exibe o ultimo repositorio que foi atualizado');
 
 // Promise interface
-scrapeIt("https://www.imdb.com/title/tt1274586/", {
-    title: "h1"
-  , summary: "div.summary_text"
-  , rating: "[itemprop=ratingValue]"
+scrapeIt("https://github.com/gabrielsouzasys?tab=repositories", {
+    nome_repositorio: "li:nth-of-type(1) a[itemprop='name codeRepository']",
+    descricao: "li:nth-of-type(1) p",
+    linguagem: "li:nth-of-type(1) span[itemprop='programmingLanguage']"
 }).then(page =>
-	console.log(page)
-).catch( err => console.log(err));
-    
-	
-	
+    console.log(page)
+).catch(err => console.log(err));
+
+
+
+
 // Callback interface
 /*scrapeIt("https://ionicabizau.net", {
     // Fetch the articles
